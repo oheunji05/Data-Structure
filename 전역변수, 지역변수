@@ -1,0 +1,52 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+static int i = 7; //전역변수 정적변수
+
+void func1();
+
+int main() { //데이터 영역
+	int i = 5; //지역변수 
+	func1();
+	i++; //지역변수 i
+	printf("i=%d\n", i); //6
+	return 0;
+}
+
+void func1() {
+	i++; //전역변수 i
+	printf("func1 i=%d \n", i); //8
+	func2();
+}
+
+void func2() {
+	i++; //전역변수 i
+	printf("func2 i=%d \n", i); //9
+}
+
+------------------------------------------------------------------------
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+int i = 7; //전역변수
+
+void func1(), void func2();;
+
+int main() { //데이터 영역
+	i = 5; //전역변수 (7이 5로 바뀜)
+	func1();
+	i++; //전역변수 i
+	printf("i=%d\n", i); //8
+	return 0;
+}
+
+void func1() {
+	i++; //전역변수 i
+	printf("func1 i=%d \n", i); //6
+	func2();
+}
+
+void func2() {
+	i++; //전역변수 i
+	printf("func2 i=%d \n", i); //7
+}
