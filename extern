@@ -1,0 +1,38 @@
+소스1
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+int i = 7; 
+
+extern void func1(); //extern - 분리할 때 or 안에 없을 때 사용 
+
+int main() { //데이터 영역
+	i = 5; 
+	func1();
+	i++; 
+	printf("i=%d\n", i); 
+	return 0;
+}
+
+
+
+
+
+소스2
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+extern int i;
+
+void func2();
+
+void func1() {
+	i++;
+	printf("extern func1 i=%d \n", i);
+	func2();
+}
+
+void func2() {
+	i++;
+	printf("extern func2 i=%d \n", i);
+}
